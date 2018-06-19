@@ -1,12 +1,17 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 
-app.config.from_object('config')
+app.config.from_object('config.settings')
+app.config.from_envvar('FLASK_ENV',silent=True)
 
-from app.about.controller import about as about
+db = SQLAlchemy(app)
 
-app.register_blueprint(about)
+from app.emp.controller import emp as emp
+
+app.register_blueprint(emp)
 
 
 @app.errorhandler(404)
