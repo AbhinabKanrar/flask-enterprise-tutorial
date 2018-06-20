@@ -24,3 +24,13 @@ def not_found(error):
         'status': 404,
         'message': 'Not Found: ' + request.url,
     }), 404
+
+@app.before_request
+def before_request():
+    try:
+        request.headers['ws-siteid']
+    except KeyError:
+        return jsonify({
+        'status': 403,
+        'message': 'Not Authorized'
+    }), 403
