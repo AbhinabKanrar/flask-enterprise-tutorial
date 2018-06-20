@@ -1,3 +1,6 @@
+import os
 from app import app
 
-app.run(port=8080)
+PORT = int(os.environ.get('FLASK_SERVER_PORT', '8080'))
+
+app.run(port=PORT)
