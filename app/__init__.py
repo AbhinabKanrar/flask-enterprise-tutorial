@@ -1,4 +1,4 @@
-from flask import Flask,request,Response,jsonify
+from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -16,8 +16,7 @@ app.register_blueprint(emp)
 
 @app.errorhandler(404)
 def not_found(error):
-    resp = jsonify({
+    return jsonify({
         'status': 404,
         'message': 'Not Found: ' + request.url,
-    })
-    return resp, 404
+    }), 404
