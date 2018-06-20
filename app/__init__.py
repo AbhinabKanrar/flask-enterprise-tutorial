@@ -9,10 +9,14 @@ app.config.from_envvar('FLASK_ENV',silent=True)
 
 db = SQLAlchemy(app)
 
+from app.common.entity.emp import Employee
+
+db.create_all()
+db.session.commit()
+
 from app.emp.controller import emp as emp
 
 app.register_blueprint(emp)
-
 
 @app.errorhandler(404)
 def not_found(error):
