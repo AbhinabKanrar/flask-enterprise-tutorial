@@ -1,0 +1,47 @@
+{
+	"info": {
+		"name": "flask-enterprise-tutorial",
+		"_postman_id": "56702c19-caa3-6b02-5c01-5ca1978a2627",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "emp-save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ws-siteid",
+						"value": "59a3c764141f97357d458b59"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"\"\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/emp/save",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"emp",
+						"save"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

@@ -14,16 +14,10 @@ def see():
 def save():
     try:
         data = request.get_json()
-        data = service.save(data, request.headers['ws-siteid'])
+        resp = service.save(data, request.headers['ws-siteid'])
     except AttributeError:
         return jsonify({
             'status': 400,
             'message': 'Please provide valid data in json format'
         }), 400
-    except RuntimeError:
-        return jsonify({
-            'status': 500,
-            'message': 'Unable to save the employee at this moment'
-        }), 500
-    schema = ResponseSchema()
-    return resp.dump(data).data
+    return jsonify(resp)

@@ -8,4 +8,4 @@ class Error:
 
 class ErrorSchema(ma.Schema):
     class Meta:
-        model = Error
+        fields = ('code', 'desc')

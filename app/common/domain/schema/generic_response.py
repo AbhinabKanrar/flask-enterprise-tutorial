@@ -7,6 +7,6 @@ class Response:
         self.data = data
         self.errors = errors
 
-class ResponseSchema(ma.ModelSchema):
+class ResponseSchema(ma.Schema):
     class Meta:
-        model = Response
+        fields = ('status', 'data', 'errors')
