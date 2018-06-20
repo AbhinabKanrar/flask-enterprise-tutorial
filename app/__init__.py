@@ -1,5 +1,6 @@
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 
 app = Flask(__name__)
@@ -7,6 +8,7 @@ app = Flask(__name__)
 app.config.from_object('config.settings')
 app.config.from_envvar('FLASK_ENV',silent=True)
 
+ma = Marshmallow(app)
 db = SQLAlchemy(app)
 
 from app.common.entity.emp import Employee
@@ -24,6 +26,13 @@ def not_found(error):
         'status': 404,
         'message': 'Not Found: ' + request.url,
     }), 404
+
+@app.errorhandler(400)
+def bad_data(error):
+    return jsonify({
+        'status': 400,
+        'message': 'Please provide valid data in json format'
+    }), 400
 
 @app.before_request
 def before_request():

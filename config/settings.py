@@ -4,7 +4,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 DEBUG = True
 
-THREADS_PER_PAGE = 4
+THREADS_PER_PAGE = 2
 
 CSRF_ENABLED = False
 

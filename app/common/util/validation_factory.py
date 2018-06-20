@@ -4,5 +4,5 @@ from app.common.domain.schema.error import Error
 def validate_save_payload(data, key):
     errors = []
     if is_empty(data.get('name')):
-        errors.append(Error(code='1001',desc='Name must be present'))
+        errors.append(Error('1001','Name must be present'))
     return errors
