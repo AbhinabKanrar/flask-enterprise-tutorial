@@ -1,6 +1,8 @@
 from flask import Flask,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+
+from app.common.domain.schema.error import Error
+from app.common.util.resp_mapper import create_resp
 
 
 app = Flask(__name__)
@@ -8,7 +10,6 @@ app = Flask(__name__)
 app.config.from_object('config.settings')
 app.config.from_envvar('FLASK_ENV',silent=True)
 
-ma = Marshmallow(app)
 db = SQLAlchemy(app)
 
 from app.common.entity.emp import Employee
@@ -22,24 +23,15 @@ app.register_blueprint(emp)
 
 @app.errorhandler(404)
 def not_found(error):
-    return jsonify({
-        'status': 404,
-        'message': 'Not Found: ' + request.url,
-    }), 404
+    return create_resp(Error('1001','NOT_FOUND'), 404)
 
 @app.errorhandler(400)
 def bad_data(error):
-    return jsonify({
-        'status': 400,
-        'message': 'Please provide valid data in json format'
-    }), 400
+    return create_resp(Error('1002','BAD_DATA'), 400)
 
 @app.before_request
 def before_request():
     try:
         request.headers['ws-siteid']
     except KeyError:
-        return jsonify({
-        'status': 403,
-        'message': 'Not Authorized'
-    }), 403
+        return create_resp(Error('1003','UN_AUTHORIZED'), 403)
