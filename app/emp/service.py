@@ -15,7 +15,7 @@ def save(data, siteId):
         for error in errors:
             resp.add_error(error)
 
-    emp = Employee(name='n3',email='e3',site='s3')
+    emp = Employee(name=data.get('name'), email=data.get('email'), site=siteId)
     
     try:
         dao.save(emp)
