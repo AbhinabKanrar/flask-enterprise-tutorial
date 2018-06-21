@@ -9,10 +9,11 @@ import app.emp.dao as dao
 def save(data, siteId):
     errors = validation.validate_save_payload(data, siteId)
     
-    resp = Response(False, None, None)
+    resp = Response()
 
     if is_empty(errors) == False:
-        resp.errors = errors
+        for error in errors:
+            resp.add_error(error)
 
     emp = Employee(name='n3',email='e3',site='s3')
     

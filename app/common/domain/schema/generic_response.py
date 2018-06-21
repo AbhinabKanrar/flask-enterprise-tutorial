@@ -1,6 +1,9 @@
 class Response:
+
+    def __init__(self):
+        self.status = False
+        self.data = None
+        self.errors = []
     
-    def __init__(self, status, data, errors):
-        self.status = status
-        self.data = data
-        self.errors = errors
+    def add_error(self, error):
+        self.errors.append(error.__dict__)
